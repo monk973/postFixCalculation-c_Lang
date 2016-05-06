@@ -2,7 +2,7 @@
 
 CalcFunc.h
 
-CalcFunc.c
+CalcFunc.cpp
 
 #Data Type Part
 
@@ -10,7 +10,7 @@ DataTypes.h
 
 calcStack.h
 
-calcStack.c
+calcStack.cpp
 
 #main
 
