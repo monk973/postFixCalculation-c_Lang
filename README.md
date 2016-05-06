@@ -16,7 +16,7 @@ calcStack.c
 
 main.c
 
-#All Std Header is in stdafx.h.
+#All Std Headers are in stdafx.h.
 
 
 #Visual Studio 2015 version
