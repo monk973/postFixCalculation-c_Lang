@@ -14,7 +14,7 @@ calcStack.c
 
 #main
 
-main.c
+ConsoleApplication1.cpp
 
 #All Std Headers are in stdafx.h.
 
