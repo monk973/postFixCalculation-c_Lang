@@ -52,7 +52,7 @@ float calc_String(char * pStr)
 			if (!calc_StackIsEmpty(g_opStack) &&
 				calc_GetPriority(calc_StackTopData(g_opStack)) > calc_GetPriority(token[0]))
 			{
-				while (!calc_StackIsEmpty(g_opStack) && 
+				while (!calc_StackIsEmpty(g_opStack) &&
 					calc_StackTopData(g_opStack) != '(')
 				{
 					value = calc_StackPop(g_opStack);
@@ -61,19 +61,14 @@ float calc_String(char * pStr)
 					strcat(g_postfixStr, " ");
 				}
 
-				if (calc_StackTopData(g_opStack) == '(')
-				{
-					calc_StackPop(g_opStack);
-				}
-
-
 			}
 			calc_StackAdd(g_opStack, token[0]);
 		}
 
 
-		//because of calc_SubStr Func...     this func assign new memory...   
+		//because of calc_SubStr Func...  this func assign new memory...   
 		free(token);
+
 		token = nullptr;
 		value = 0;
 	}//END WHILE
@@ -84,11 +79,14 @@ float calc_String(char * pStr)
 		strcat(g_postfixStr, (char*)(&value));
 	}
 
+	/*
+	//debug
 	int i = 0;
 	while (g_postfixStr[i] != '\0')
 	{
 		printf("%c",g_postfixStr[i++]);
 	}
+	*/
 
 	return calc_Calculate();
 }
@@ -154,6 +152,11 @@ float calc_Calculate()
 	float result= calc_StackPop(g_calcStack);
 
 	return result;
+}
+
+char* calc_getPostFixStr()
+{
+	return g_postfixStr;
 }
 
 int calc_GetPriority(char ch)

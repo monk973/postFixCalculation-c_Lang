@@ -23,6 +23,9 @@ float calc_String(char* pStr);
 float calc_Calculate();
 
 //
+char* calc_getPostFixStr();
+
+//
 int calc_GetPriority(char ch);
 
 //
