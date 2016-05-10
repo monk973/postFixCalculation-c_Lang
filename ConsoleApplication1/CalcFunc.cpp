@@ -179,11 +179,6 @@ int calc_GetPriority(char ch)
 	case '*':
 	case '/':
 		return 1;
-
-
-	case '(':
-		return 2;
-
 	}
 
 }
