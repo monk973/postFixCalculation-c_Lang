@@ -1,3 +1,1 @@
-﻿  ConsoleApplication1.cpp
-c:\users\moula\documents\visual studio 2015\projects\consoleapplication1\consoleapplication1\datatypes.h(15): warning C4091: 'typedef ': 변수를 선언하지 않으면 'ST_DATA' 왼쪽은 무시됩니다.
-  ConsoleApplication1.vcxproj -> C:\Users\moula\Documents\Visual Studio 2015\Projects\ConsoleApplication1\Debug\ConsoleApplication1.exe
+﻿  ConsoleApplication1.vcxproj -> C:\Users\moula\Documents\Visual Studio 2015\Projects\ConsoleApplication1\Debug\ConsoleApplication1.exe
