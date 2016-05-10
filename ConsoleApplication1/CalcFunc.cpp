@@ -3,9 +3,9 @@
 
 #define STACK_SIZE 100
 
-calc_stack *g_calcStack = calc_CreateStack(STACK_SIZE);//¿¬»ê¿ë ÀúÀå¼Ò
-calc_stack *g_opStack = calc_CreateStack(STACK_SIZE);//¿¬»êÀÚ ÀúÀå¼Ò
-char* g_postfixStr = nullptr; //Ãâ·Â¿ë ÈÄÀ§ Ç¥±â½Ä ÀúÀå¼Ò
+calc_stack *g_calcStack = calc_CreateStack(STACK_SIZE);//ì—°ì‚°ìš© ì €ìž¥ì†Œ
+calc_stack *g_opStack = calc_CreateStack(STACK_SIZE);//ì—°ì‚°ìž ì €ìž¥ì†Œ
+char* g_postfixStr = nullptr; //ì¶œë ¥ìš© í›„ìœ„ í‘œê¸°ì‹ ì €ìž¥ì†Œ
 
 float calc_String(char * pStr)
 {
@@ -20,6 +20,13 @@ float calc_String(char * pStr)
 	int pos = 0;
 	while (pStr[pos] != '\0')
 	{
+		if(token){
+			//because of calc_SubStr Func...  this func assign new memory...   
+			free(token);
+			token = nullptr;
+		}
+		value = 0;
+
 		token = calc_getNextToken(pStr,pos,&type);
 		pos += strlen(token);
 
@@ -49,6 +56,14 @@ float calc_String(char * pStr)
 		}
 		else if (type == OP)
 		{
+			
+			if(calc_StackTopData(g_opStack)=='(' || 
+				token[0]=='(')
+			{
+				calc_StackAdd(g_opStack,token[0]);
+				continue;
+			}
+
 			if (!calc_StackIsEmpty(g_opStack) &&
 				calc_GetPriority(calc_StackTopData(g_opStack)) > calc_GetPriority(token[0]))
 			{
@@ -64,19 +79,13 @@ float calc_String(char * pStr)
 			}
 			calc_StackAdd(g_opStack, token[0]);
 		}
-
-
-		//because of calc_SubStr Func...  this func assign new memory...   
-		free(token);
-
-		token = nullptr;
-		value = 0;
 	}//END WHILE
 
 	while (!calc_StackIsEmpty(g_opStack))
 	{
 		value = calc_StackPop(g_opStack);
 		strcat(g_postfixStr, (char*)(&value));
+		strcat(g_postfixStr, " ");
 	}
 
 	/*
